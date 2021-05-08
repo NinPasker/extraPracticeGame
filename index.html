@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rock Paper Scissors</title>
+</head>
+<body>
+        <script>
+        // 👊 📝 ✂️ 
+        // Write a function called getComputerChoice that uses Math.random(), and returns one string either "rock", "paper", or "scissors" randomly each time it's called.
+
+        // Creating an array list for available choices
+        const gameChoices = ["rock", "paper", "scissors"];
+        
+        // function to create random choice for the computer 
+        const getComputerChoice = () => {
+                // gets the number of items in the array list
+                let totalChoices = gameChoices.length;
+                // randomly chooses 0-2 in the array list
+                let choiceIndex = Math.floor(Math.random() * totalChoices);
+                // grabs the list item
+                let randomChoice = gameChoices[choiceIndex];
+                return randomChoice;
+        }
+
+        // Make a variable called userChoice that utilizes prompt() to grab the user's choice of "rock", "paper", or "scissors", (might want to lowercase the input) and stores it.
+        
+        // Created a function to check for spelling error 
+
+        const userInput = () => {
+                // asking for input & lowercasing them
+                let userChoice = prompt(`Choose your weapon: Rock, Paper or Scissors.`).toLowerCase();
+                // gameChoice is the array list javascript function .includes checks the userChoice's input with the items in the list and if true the userChoice will be returned. 
+                if (gameChoices.includes(userChoice)) {
+                        return userChoice;
+                // when the above statement returns false this block executes & the browser will refresh to continue the game. 
+                } else {
+                        alert(`Check your spelling & try again.`);
+                        window.location.reload(false); 
+                }
+        }
+        
+
+        // Call the getComputerChoice function and store it's return value in a variable called computerChoice
+
+        let computerChoice = getComputerChoice();
+        let usersChoice = userInput();
+
+        // console.log out the following using template literals:
+        // "You threw ${cleanedUserChoice}"
+        // "The computer threw ${computerChoice}"
+
+        alert(`You threw ${usersChoice}. The computer threw ${computerChoice}`);
+
+        // Write a function called checkWinner() that takes 2 parameters: userHand, computerHand
+        // and returns the winner, a string that says either "It's a tie!" or "User won!" or "Computer won!"
+
+        const checkWinner = (userHand, computerHand) => {
+                if (userHand == computerHand) {
+                        alert(`🤝 It's a tie`);
+                        window.location.reload(false);
+                } else if (userHand == "rock" && computerHand == "scissors" || userHand == "paper" && computerHand == "rock" || userHand == "scissors" && computerHand == "paper") {
+                        alert(`😎 User Won!`);
+                        window.location.reload(false);
+                } else {
+                        alert(`🤖 Computer Won!`);
+                        window.location.reload(false);
+                }
+        }
+
+        // Call check winner function with your 2 variables cleanedUserChoice, and computerChoice, console.log the result
+
+        checkWinner(usersChoice, computerChoice);
+        
+        </script>
+</body>
+</html>
